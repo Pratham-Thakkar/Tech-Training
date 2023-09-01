@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 app.use(userRoutes)
 
-mongoose.connect('')
+mongoose.connect(' ')
     .then(()=>{
         console.log('connected')
         app.listen(3000)
