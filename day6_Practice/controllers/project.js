@@ -9,7 +9,7 @@ exports.addProjects = async (req, res) => {
     const allProjects = [];
     for (let i = 0; i < 100; i++) {
       const newProject = new Project({
-        createdBy: users[Math.floor(Math.random() * users.length)].id, 
+        createdBy: users[Math.floor(Math.random() * users.length)].id,
         title: randomText({ words: 3 }),
         description: randomText({ words: 8 }),
         published: Math.ceil(Math.random() * 100) % 3 === 0,
@@ -27,7 +27,7 @@ exports.addProjects = async (req, res) => {
 exports.listProjects = async (req, res) => {
   try {
     const {
-      body: { offset, limit, skills },
+      body: { offset, limit },
     } = req;
     const projectList = await Project.find(
       {

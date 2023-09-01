@@ -3,6 +3,16 @@ const utils = require("../utils/randomSkills");
 const randomText = require("random-title");
 const User = require("../models/user");
 
+const skills = [
+  "gym",
+  "sleep",
+  "horse riding",
+  "cricket",
+  "dance",
+  "sing",
+  "foose ball",
+];
+
 exports.addProjects = async (req, res) => {
   try {
     const users = await User.find({}, { _id: 1 });
@@ -30,9 +40,10 @@ exports.listProjects = async (req, res) => {
       body: { offset, limit, skills },
     } = req;
     const projectList = await Project.find(
-      {
-        skillsRequire: { $all: skills.split(",") },
-      },
+      {},
+      // {
+      //   skillsRequire: { $all: skills.split(",") },
+      // },
       { title: 1 }
     )
       .sort({ title: 1 })
@@ -42,9 +53,9 @@ exports.listProjects = async (req, res) => {
 
     res.send({
       status: "success",
-      count: await Project.countDocuments({
-        skillsRequire: { $all: skills.split(",") },
-      }),
+      // count: await Project.countDocuments({
+      //   skillsRequire: { $all: skills.split(",") },
+      // }),
       list: projectList,
     });
   } catch (e) {

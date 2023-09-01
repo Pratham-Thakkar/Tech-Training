@@ -5,7 +5,7 @@ import "../css/Profile.css";
 
 function Profile(props: IAbout): JSX.Element {
   return (
-    <div className="profile" key={props.id}>
+    <div className="profile-details" key={props.id}>
       <Info {...props} />
       <About {...props} />
     </div>
