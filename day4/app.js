@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 app.use(userRoutes)
 
-mongoose.connect('mongodb+srv://pratham:0809Pratham@cluster0.hfa5lw3.mongodb.net/titans')
+mongoose.connect('')
     .then(()=>{
         console.log('connected')
         app.listen(3000)
