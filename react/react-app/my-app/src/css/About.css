@@ -1,0 +1,21 @@
+.about{
+    background-color:lightslategray;
+    margin-left: 5%;
+    align-items: center;
+    width: 450px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+.title, .detail{
+    color: aliceblue;
+}
+
+.title{
+    color: black;
+    margin-bottom: 0.1%;
+}
+
+.detail{
+    margin-top: 0.5%;
+    margin-bottom: 2px;
+}

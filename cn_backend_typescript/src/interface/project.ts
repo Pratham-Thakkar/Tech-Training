@@ -1,0 +1,36 @@
+export interface IProject {
+  projectId: string;
+  createdBy: string;
+  projectName: string;
+  internalProjectName?: string;
+  projectType: string;
+  union: string;
+  projectDescription?: string;
+  showContactInfo: boolean;
+  showNetworkToTalent: boolean;
+  showCastingAssociateToTalent: boolean;
+  showCastingAssistantToTalent: boolean;
+  showContactNumberToTalent: boolean;
+  showContantEmailToTalent: boolean;
+  cdNameContactInfo?: string;
+  castingAssociateContactInfo?: string;
+  castingAssistantContactInfo?: String;
+  castingPhoneNumberContactInfo?: string;
+  castingEmailContactInfo?: string;
+  networkCreativeTeam?: string;
+  castingAssociateCreativeTeam?: string;
+  castingAssistantCreativeTeam?: string;
+  contactPhoneNumberCreativeTeam?: string;
+  contactEmailCreativeTeam?: string;
+  showAuditionLocationToTalent: boolean;
+  auditionDateInRange?: boolean;
+  showWorkLocation: boolean;
+  workDateInRange?: boolean;
+  projectSynopsis?: string;
+  projectAdditionalDetails: string;
+  additionalFileLink?: Array<string>;
+  published: boolean;
+  active: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}

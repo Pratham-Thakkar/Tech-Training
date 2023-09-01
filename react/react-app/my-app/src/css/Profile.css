@@ -1,0 +1,10 @@
+.profile{
+    width: 500px;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 800px;
+    border-radius: 11px;
+    background-color: #1C1C1C;
+    text-align: center;
+  }

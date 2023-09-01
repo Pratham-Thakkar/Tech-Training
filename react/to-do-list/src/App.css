@@ -1,0 +1,60 @@
+.input-strike{
+  text-decoration: line-through;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: aqua;
+}
+
+.list-item> li{
+  margin: 2%;
+  font-size:xx-large
+}
+
+.list-item> button{
+  margin: 1%;
+  width: auto;
+}
+.App{
+  text-align: center;
+}
+
+.input-box{
+  height: 26px;
+  width: 200px;
+  margin-right: 2%;
+}
+
+.input-btn{
+  height: 50px;
+  width: 50px;
+  background-color: lightblue;
+  text-decoration: wavy;
+  border-radius: 12%;
+  font-weight: bold;
+}
+
+.input-edit-btn{
+  height: 50px;
+  width: 67px;
+  background-color: lightblue;
+  text-decoration: wavy;
+  border-radius: 12%;
+  font-weight: bold;
+}
+
+.heading{
+  color: brown;
+  font-family: cursive;
+}
+
+.task-list{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

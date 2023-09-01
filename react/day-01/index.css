@@ -1,0 +1,26 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: antiquewhite;
+}
+
+.nav-items{
+    list-style-type: none;
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: self-end;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logo{
+    width: 90px;
+    height: 90px;
+    border: 2px solid black
+}
