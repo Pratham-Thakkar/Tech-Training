@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import { pool } from "../connectDb";
 import { QueryResult } from "pg";
 
-export const addTalent = async (req: Request, res: Response) => {
+export const addTalent = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const {
       body: { first_name, last_name, gender, email },
@@ -24,12 +27,23 @@ export const addTalent = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteTalent = async (req: Request, res: Response) => {
+export const deleteTalent = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const {
       params: { id },
     } = req;
-
+    const talent = await pool.query(
+      "SELECT *  FROM talent WHERE talent_id = $1",
+      [id]
+    );
+    if (!talent.rows[0]) throw Error("Talent doesnot exist");
+    await pool.query(
+      "DELETE FROM talent_submitted_projects WHERE talent_id = $1",
+      [id]
+    );
     await pool.query("DELETE FROM talent WHERE talent_id = $1 RETURNING *", [
       id,
     ]);
@@ -45,7 +59,10 @@ export const deleteTalent = async (req: Request, res: Response) => {
   }
 };
 
-export const listTalent = async (req: Request, res: Response) => {
+export const listTalent = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const result: QueryResult = await pool.query("SELECT * FROM talent");
 
@@ -61,7 +78,10 @@ export const listTalent = async (req: Request, res: Response) => {
   }
 };
 
-export const updateTalent = async (req: Request, res: Response) => {
+export const updateTalent = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const {
       params: { id },
