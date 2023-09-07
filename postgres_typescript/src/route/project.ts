@@ -6,8 +6,11 @@ import {
   listProject,
   updateProject,
 } from "../controller/project";
-
-import { submitProject } from "../controller/submitProject";
+import { listSubmittedTalent } from "../controller/listSubmittedTalent";
+import {
+  listAllProjects,
+  listSubmissionsForGenre,
+} from "../controller/listProjects";
 
 const router: Router = Router();
 
@@ -15,6 +18,8 @@ router.post("/addProject", addProject);
 router.get("/listProject", listProject);
 router.delete("/deleteProject/:projectId", deleteProject);
 router.put("/updateProject/:projectId", updateProject);
-router.post("/submitProject", submitProject);
+router.get("/listSubmittedTalent/:projectId", listSubmittedTalent);
+router.get("/listAllProject", listAllProjects);
+router.get("/listSubmissionsForGenre", listSubmissionsForGenre);
 
 export default router;

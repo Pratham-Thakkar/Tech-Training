@@ -33,19 +33,20 @@ export const deleteTalent = async (
 ): Promise<Response> => {
   try {
     const {
-      params: { id },
+      params: { talentId },
     } = req;
     const talent = await pool.query(
       "SELECT *  FROM talent WHERE talent_id = $1",
-      [id]
+      [talentId]
     );
     if (!talent.rows[0]) throw Error("Talent doesnot exist");
+
     await pool.query(
       "DELETE FROM talent_submitted_projects WHERE talent_id = $1",
-      [id]
+      [talentId]
     );
     await pool.query("DELETE FROM talent WHERE talent_id = $1 RETURNING *", [
-      id,
+      talentId,
     ]);
 
     return res.send({
@@ -84,7 +85,7 @@ export const updateTalent = async (
 ): Promise<Response> => {
   try {
     const {
-      params: { id },
+      params: { talentId },
     } = req;
     let {
       body: { first_name, last_name, gender, email, is_active },
@@ -92,7 +93,7 @@ export const updateTalent = async (
 
     const talent: QueryResult = await pool.query(
       "SELECT * FROM talent WHERE talent_id = $1",
-      [id]
+      [talentId]
     );
     if (!talent.rows[0]) throw Error("talent does not exist");
     first_name = !first_name ? talent.rows[0].first_name : first_name;
@@ -102,7 +103,7 @@ export const updateTalent = async (
     is_active = !is_active ? talent.rows[0].is_active : is_active;
     const result: QueryResult = await pool.query(
       "UPDATE talent SET first_name = $1, last_name = $2, gender = $3, email = $4, is_active = $5  WHERE talent_id = $6 RETURNING *",
-      [first_name, last_name, gender, email, is_active, id]
+      [first_name, last_name, gender, email, is_active, talentId]
     );
 
     return res.send({

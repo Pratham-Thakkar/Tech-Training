@@ -11,22 +11,33 @@ export const submitProject = async (
       body: { talentId, projectId },
     } = req;
 
-    const talent = await pool.query(
+    const talentExist = await pool.query(
       "SELECT * FROM talent WHERE talent_id = $1 ",
       [talentId]
     );
 
-    const project = await pool.query(
+    const projectExist = await pool.query(
       "SELECT * FROM projects WHERE project_id = $1",
       [projectId]
     );
 
-    if (!talent.rows[0] || !project.rows[0])
+    if (!talentExist.rows[0] || !projectExist.rows[0])
       throw Error("Talent or Project dosenot exist");
 
+    const project: QueryResult = await pool.query(
+      "SELECT * FROM talent_submitted_projects WHERE talent_id = $1",
+      [talentId]
+    );
+
+    const alreadySubmitted = project.rows.some((submittedProject) => {
+      return submittedProject.project_id === projectId;
+    });
+
+    if (alreadySubmitted) throw Error("Already Submitted");
+
     await pool.query(
-      "INSERT INTO talent_submitted_projects (talent_id, project_id) VALUES ($1, $2)",
-      [talentId, projectId]
+      "INSERT INTO talent_submitted_projects (talent_id, project_id, submitted_at) VALUES ($1, $2, $3)",
+      [talentId, projectId, new Date()]
     );
     return res.send({ status: "success", message: "project submitted" });
   } catch (err) {

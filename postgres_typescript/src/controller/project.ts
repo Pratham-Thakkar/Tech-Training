@@ -9,12 +9,12 @@ export const addProject = async (
 ): Promise<Response> => {
   try {
     const {
-      body: { projectName, projectDesc, createdBy },
+      body: { projectName, projectDesc, createdBy, genre },
     } = req;
 
     const result: QueryResult = await pool.query(
-      "INSERT INTO projects (project_name, project_desc, created_by, created_at) VALUES($1, $2, $3, $4) RETURNING *",
-      [projectName, projectDesc, createdBy, new Date()]
+      "INSERT INTO projects (project_name, project_desc, created_by, created_at, genre) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [projectName, projectDesc, createdBy, new Date(), genre]
     );
 
     return res.send({
@@ -87,7 +87,7 @@ export const updateProject = async (
       params: { projectId },
     } = req;
     let {
-      body: { projectName, createdBy, projectDesc },
+      body: { projectName, createdBy, projectDesc, genre },
     } = req;
 
     const result: QueryResult = await pool.query(
@@ -99,10 +99,11 @@ export const updateProject = async (
     projectName = !projectName ? result.rows[0].project_name : projectName;
     projectDesc = !projectDesc ? result.rows[0].project_desc : projectDesc;
     createdBy = !createdBy ? result.rows[0].created_by : createdBy;
+    genre = !genre ? result.rows[0].genre : genre;
 
     const project: QueryResult = await pool.query(
-      "UPDATE projects SET project_name = $1, project_desc = $2, created_by = $3 WHERE project_id = $4 RETURNING *",
-      [projectName, projectDesc, createdBy, projectId]
+      "UPDATE projects SET project_name = $1, project_desc = $2, created_by = $3, genre = $4 WHERE project_id = $5 RETURNING *",
+      [projectName, projectDesc, createdBy, genre, projectId]
     );
 
     return res.send({
