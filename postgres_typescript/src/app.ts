@@ -1,7 +1,6 @@
 import express, { Express } from "express";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
-dotenv.config({ path: "src/.env" });
+import "dotenv/config";
 
 import talentRoutes from "./route/talent";
 import projectRoutes from "./route/project";
