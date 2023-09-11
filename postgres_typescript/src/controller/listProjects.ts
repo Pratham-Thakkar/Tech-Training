@@ -21,6 +21,27 @@ export const listAllProjects = async (
   }
 };
 
+export const listSpecificProject = async (req: Request, res: Response) => {
+  try {
+    const {
+      params: { projectId },
+    } = req;
+    const specificProject = await pool.query(
+      "SELECT * FROM projects WHERE project_id = $1",
+      [projectId]
+    );
+
+    return res.send({
+      status: "success",
+      projectDetails: specificProject.rows,
+    });
+  } catch (err) {
+    if (err instanceof Error)
+      return res.status(500).send({ status: "failed", message: err.message });
+    return res.status(500).send({ status: "failed", message: err });
+  }
+};
+
 export const listSubmissionsForGenre = async (
   req: Request,
   res: Response

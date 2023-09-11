@@ -34,7 +34,14 @@ export const listProject = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const result: QueryResult = await pool.query("Select * from Projects");
+    const {
+      query: { limit, offset, searchText },
+    } = req;
+
+    const result: QueryResult = await pool.query(
+      "SELECT * from PROJECTS WHERE project_name ILIKE $3 offset $1 limit $2",
+      [offset, limit, `%${searchText}%`]
+    );
     return res.send({
       status: "success",
       totalProjects: result.rowCount,
