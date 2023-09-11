@@ -35,13 +35,23 @@ export const listProject = async (
 ): Promise<Response> => {
   try {
     const {
-      query: { limit, offset, searchText },
+      query: { limit, offset, q, selectedValue },
     } = req;
+    console.log(selectedValue);
 
-    const result: QueryResult = await pool.query(
-      "SELECT * from PROJECTS WHERE project_name ILIKE $3 offset $1 limit $2",
-      [offset, limit, `%${searchText}%`]
-    );
+    let result: QueryResult;
+    if (selectedValue) {
+      result = await pool.query(
+        `SELECT * from PROJECTS WHERE project_name ILIKE $3 ORDER BY ${selectedValue} ASC offset $1 limit $2`,
+        [offset, limit, `%${q}%`]
+      );
+    } else {
+      result = await pool.query(
+        "SELECT * from PROJECTS WHERE project_name ILIKE $3  offset $1 limit $2",
+        [offset, limit, `%${q}%`]
+      );
+    }
+
     return res.send({
       status: "success",
       totalProjects: result.rowCount,

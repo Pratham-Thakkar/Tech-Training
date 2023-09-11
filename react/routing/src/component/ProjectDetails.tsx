@@ -7,7 +7,6 @@ export const ProjectDetails = () => {
   const [projectDetail, setProjectDetail] = useState(Array<details>);
   const params = useParams();
   useEffect(() => {
-    console.log("http://localhost:3003/listSpecificProject/");
     async function fetchSpecificProject() {
       const res = await axios.get(
         `http://localhost:3003/listSpecificProject/${params.projectId}`

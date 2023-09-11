@@ -10,6 +10,9 @@ import { ProjectDetails } from "./component/ProjectDetails";
 import { EditProject } from "./component/EditProject";
 import { TalentDetails } from "./component/TalentDetails";
 import { EditTalnet } from "./component/EditTalent";
+import { ProtectedRoute } from "./component/ProtectedRoute";
+import { Login } from "./component/Login";
+import { AuthProvider } from "./AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +20,16 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
+        path: "/",
+        element: <Login />,
+      },
+      {
         path: "/createProject",
-        element: <CreateProject />,
+        element: (
+          <ProtectedRoute>
+            <CreateProject />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/createtalent",
@@ -60,7 +71,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 type details = Record<string, string>;
@@ -7,49 +7,54 @@ export const ListProject = () => {
   const [projects, setProjects] = useState(Array<details>);
   const [limit, setLimit] = useState(5);
   const [offset, setOffset] = useState(0);
-  const [searchText, setSearchText] = useState("");
-  const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+  const [query, setQuery] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
 
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchProjects() {
       const res = await axios.get("http://localhost:3003/listProject", {
         params: {
           limit,
           offset,
-          searchText,
+          q: query,
+          selectedValue,
         },
       });
-      setProjects((projects) => [...projects, ...res.data.projects]);
-      setSearchText("");
+      setProjects([...projects, ...res.data.projects]);
     }
     fetchProjects();
-  }, [limit, offset, searchButtonClicked]);
+  }, [limit, offset, query, selectedValue]);
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setLimit(5);
+    setOffset(0);
+    setProjects([]);
+    setQuery(e.target.value);
+  }
+
+  function handleSelectedValue(e: ChangeEvent<HTMLSelectElement>) {
+    setLimit(5);
+    setOffset(0);
+    setProjects([]);
+    setSelectedValue(e.target.value);
+  }
 
   return (
     <>
       <input
         type="text"
         placeholder="Enter a text to be searched"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => handleChange(e)}
       />
 
-      <button
-        type="submit"
-        onClick={() => {
-          setProjects([]);
-          setSearchButtonClicked((searchButtonClicked) => !searchButtonClicked);
-        }}
-      >
-        search
-      </button>
-
       <label htmlFor="sort">Sort by:</label>
-      <select>
+      <select value={selectedValue} onChange={(e) => handleSelectedValue(e)}>
         Sort By
-        <option value="createdAt">Date </option>
-        <option value="projectName">Name</option>
+        <option value={""}></option>
+        <option value={"created_at"}>Date</option>
+        <option value={"project_name"}>Name</option>
       </select>
 
       <div className="project-container">

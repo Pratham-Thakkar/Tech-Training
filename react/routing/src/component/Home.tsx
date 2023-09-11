@@ -1,6 +1,8 @@
 import { Outlet, Link } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 export const Home = () => {
+  const auth = useAuth();
   return (
     <>
       <h1>Welcome to Casting Networks</h1>
@@ -19,6 +21,15 @@ export const Home = () => {
       <Link to={`/projects`}>
         <button>List Project</button>
       </Link>
+
+      <button
+        onClick={() => {
+          auth?.setToken(null);
+        }}
+      >
+        Logout
+      </button>
+
       <div>
         <Outlet />
       </div>

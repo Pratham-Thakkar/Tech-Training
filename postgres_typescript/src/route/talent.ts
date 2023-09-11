@@ -9,6 +9,7 @@ import {
 } from "../controller/talent";
 import { submitProject } from "../controller/submitProject";
 import { listSubmittedProjects } from "../controller/listSubmittedProjects";
+import { login } from "../controller/login";
 
 const router: Router = Router();
 
@@ -19,5 +20,6 @@ router.delete("/deleteTalent/:talentId", deleteTalent);
 router.put("/updateTalent/:talentId", updateTalent);
 router.get("/listSubmittedProject/:talentId", listSubmittedProjects);
 router.post("/submitProject", submitProject);
+router.post("/login", login);
 
 export default router;
