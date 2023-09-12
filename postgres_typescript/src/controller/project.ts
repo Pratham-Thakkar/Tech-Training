@@ -35,15 +35,24 @@ export const listProject = async (
 ): Promise<Response> => {
   try {
     const {
-      query: { limit, offset, q, selectedValue },
+      query: { limit, offset, q, selectedValue, filterBy },
     } = req;
-    console.log(selectedValue);
 
     let result: QueryResult;
-    if (selectedValue) {
+    if (selectedValue && !filterBy) {
       result = await pool.query(
         `SELECT * from PROJECTS WHERE project_name ILIKE $3 ORDER BY ${selectedValue} ASC offset $1 limit $2`,
         [offset, limit, `%${q}%`]
+      );
+    } else if (!selectedValue && filterBy) {
+      result = await pool.query(
+        `SELECT * from PROJECTS WHERE project_name ILIKE $3 AND genre = $4 offset $1 limit $2`,
+        [offset, limit, `%${q}%`, filterBy]
+      );
+    } else if (selectedValue && filterBy) {
+      result = await pool.query(
+        `SELECT * from PROJECTS WHERE project_name ILIKE $3 AND genre = $4 ORDER BY ${selectedValue} offset $1 limit $2`,
+        [offset, limit, `%${q}%`, filterBy]
       );
     } else {
       result = await pool.query(

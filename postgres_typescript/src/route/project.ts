@@ -12,10 +12,11 @@ import {
   listSpecificProject,
   listSubmissionsForGenre,
 } from "../controller/listProjects";
+import { isAuth } from "../middleware/isAuth";
 
 const router: Router = Router();
 
-router.post("/addProject", addProject);
+router.post("/addProject", isAuth, addProject);
 router.get("/listProject", listProject);
 router.get("/listSpecificProject/:projectId", listSpecificProject);
 router.delete("/deleteProject/:projectId", deleteProject);

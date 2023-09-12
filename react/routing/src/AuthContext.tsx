@@ -1,5 +1,5 @@
+import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { myAxios } from "./config/axiosConfig";
 
 const AuthContext = createContext<{
   token: string | null;
@@ -11,11 +11,11 @@ export const AuthProvider = ({ children }: any) => {
 
   useEffect(() => {
     if (token) {
-      myAxios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       localStorage.setItem("token", token);
     } else {
       localStorage.removeItem("token");
-      delete myAxios.defaults.headers.common["Authorization"];
+      delete axios.defaults.headers.common["Authorization"];
     }
   }, [token]);
 

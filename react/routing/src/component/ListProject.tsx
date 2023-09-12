@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 type details = Record<string, string>;
@@ -9,36 +9,30 @@ export const ListProject = () => {
   const [offset, setOffset] = useState(0);
   const [query, setQuery] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
+  const [filterBy, setFilterBy] = useState("");
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchProjects() {
-      const res = await axios.get("http://localhost:3003/listProject", {
-        params: {
-          limit,
-          offset,
-          q: query,
-          selectedValue,
-        },
-      });
-      setProjects([...projects, ...res.data.projects]);
-    }
-    fetchProjects();
-  }, [limit, offset, query, selectedValue]);
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setLimit(5);
-    setOffset(0);
-    setProjects([]);
-    setQuery(e.target.value);
+  async function fetchProjects() {
+    const res = await axios.get("http://localhost:3003/listProject", {
+      params: {
+        limit,
+        offset,
+        q: query,
+        selectedValue,
+        filterBy,
+      },
+    });
+    setProjects([...projects, ...res.data.projects]);
   }
+  useEffect(() => {
+    fetchProjects();
+  }, [limit, offset, query, selectedValue, filterBy]);
 
-  function handleSelectedValue(e: ChangeEvent<HTMLSelectElement>) {
+  function handleChange() {
     setLimit(5);
     setOffset(0);
     setProjects([]);
-    setSelectedValue(e.target.value);
   }
 
   return (
@@ -46,15 +40,38 @@ export const ListProject = () => {
       <input
         type="text"
         placeholder="Enter a text to be searched"
-        onChange={(e) => handleChange(e)}
+        onChange={(e) => {
+          handleChange();
+          setQuery(e.target.value);
+        }}
       />
 
       <label htmlFor="sort">Sort by:</label>
-      <select value={selectedValue} onChange={(e) => handleSelectedValue(e)}>
-        Sort By
+      <select
+        value={selectedValue}
+        onChange={(e) => {
+          handleChange();
+          setSelectedValue(e.target.value);
+        }}
+      >
         <option value={""}></option>
         <option value={"created_at"}>Date</option>
         <option value={"project_name"}>Name</option>
+      </select>
+
+      <label htmlFor="filter">Filter by:</label>
+      <select
+        value={filterBy}
+        onChange={(e) => {
+          handleChange();
+          setFilterBy(e.target.value);
+        }}
+      >
+        Filter By
+        <option value={""}></option>
+        <option value={"Action"}>Action</option>
+        <option value={"Comedy"}>Comedy</option>
+        <option value={"Science Fiction"}>Science Fiction</option>
       </select>
 
       <div className="project-container">
@@ -94,7 +111,6 @@ export const ListProject = () => {
       <button
         onClick={() => {
           setOffset(offset + 5);
-          setLimit(5);
         }}
       >
         Load More
