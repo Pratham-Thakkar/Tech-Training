@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./ListTalent.css";
 
 type detail = Record<string, string>;
 
@@ -21,7 +22,7 @@ export const ListTalent = () => {
       <div>
         {talents.map((talent) => {
           return (
-            <div key={talent.talent_id} className="card">
+            <div key={talent.talent_id} className="card-talent">
               <div className="card-title">
                 {talent.first_name} {talent.last_name}
               </div>

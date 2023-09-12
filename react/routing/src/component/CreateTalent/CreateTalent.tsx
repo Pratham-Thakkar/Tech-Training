@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { FormEvent, useState } from "react";
+import "./CreateTalent.css";
 
 export const CreateTalent = () => {
   const [firstName, setFirstName] = useState("");
@@ -35,8 +36,11 @@ export const CreateTalent = () => {
   return (
     <>
       <form className="talent-form" onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="firstName">First Name:</label>
+        <label className="first-name" htmlFor="firstName">
+          First Name:
+        </label>
         <input
+          className="first-name-input"
           type="text"
           name="firstName"
           id="firstName"
@@ -45,8 +49,11 @@ export const CreateTalent = () => {
             setFirstName(e.target.value);
           }}
         />
-        <label htmlFor="lastName">Last Name:</label>
+        <label className="last-name" htmlFor="lastName">
+          Last Name:
+        </label>
         <input
+          className="last-name-input"
           type="text"
           name="lastName"
           id="lastName"
@@ -55,8 +62,11 @@ export const CreateTalent = () => {
             setLastName(e.target.value);
           }}
         />
-        <label htmlFor="email">Email:</label>
+        <label className="email" htmlFor="email">
+          Email:
+        </label>
         <input
+          className="email-input"
           type="email"
           name="email"
           id="email"
@@ -65,8 +75,11 @@ export const CreateTalent = () => {
             setEmail(e.target.value);
           }}
         />
-        <label htmlFor="Gender">gender:</label>
+        <label className="gender" htmlFor="Gender">
+          Gender:
+        </label>
         <input
+          className="gender-input"
           type="radio"
           name="gender"
           value="male"
@@ -77,6 +90,7 @@ export const CreateTalent = () => {
         />
         Male
         <input
+          className="gender-input"
           type="radio"
           name="gender"
           value="female"
@@ -86,7 +100,9 @@ export const CreateTalent = () => {
           }}
         />
         Female
-        <button type="submit">Create Talent</button>
+        <button className="submit-button" type="submit">
+          Create Talent
+        </button>
       </form>
     </>
   );

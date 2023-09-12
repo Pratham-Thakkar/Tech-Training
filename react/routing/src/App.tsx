@@ -1,18 +1,19 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { CreateProject } from "./component/CreateProject";
-import { CreateTalent } from "./component/CreateTalent";
-import { NotFound } from "./component/NotFound";
-import { Home } from "./component/Home";
-import { ListTalent } from "./component/ListTalent";
-import { ListProject } from "./component/ListProject";
-import { ProjectDetails } from "./component/ProjectDetails";
-import { EditProject } from "./component/EditProject";
-import { TalentDetails } from "./component/TalentDetails";
-import { EditTalnet } from "./component/EditTalent";
+import { CreateProject } from "./component/CreateProject/CreateProject";
+import { CreateTalent } from "./component/CreateTalent/CreateTalent";
+import { NotFound } from "./component/NotFound/NotFound";
+import { Home } from "./component/Home/Home";
+import { ListTalent } from "./component/ListTalent/ListTalent";
+import { ListProject } from "./component/ListProject/ListProject";
+import { ProjectDetails } from "./component/ProjectDetail/ProjectDetails";
+import { EditProject } from "./component/EditProject/EditProject";
+import { TalentDetails } from "./component/TalentDetail/TalentDetails";
+import { EditTalnet } from "./component/EditTalent/EditTalent";
 import { ProtectedRoute } from "./component/ProtectedRoute";
-import { Login } from "./component/Login";
-import { AuthProvider } from "./AuthContext";
+import { Login } from "./component/Login/Login";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const router = createBrowserRouter([
   {
@@ -71,9 +72,11 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </ThemeProvider>
     </>
   );
 }

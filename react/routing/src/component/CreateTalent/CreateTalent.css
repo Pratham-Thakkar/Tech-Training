@@ -1,0 +1,44 @@
+.talent-form {
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.talent-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.talent-form input[type="email"],
+.talent-form input[type="text"] {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.talent-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  display: block;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}

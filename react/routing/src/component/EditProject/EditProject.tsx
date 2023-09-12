@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { FormEvent, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import "../CreateProject/CreateProject.css";
 
 export const EditProject = () => {
   const location = useLocation();
@@ -36,9 +37,12 @@ export const EditProject = () => {
   }
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="projectName">Project Name</label>
+      <form className="project-form" onSubmit={(e) => handleSubmit(e)}>
+        <label className="project-name" htmlFor="projectName">
+          Project Name
+        </label>
         <input
+          className="project-name-input"
           type="text"
           name="projectName"
           id="projectName"
@@ -48,8 +52,11 @@ export const EditProject = () => {
           }}
         />
 
-        <label htmlFor="projectDesc">Project Description</label>
+        <label className="project-desc" htmlFor="projectDesc">
+          Project Description
+        </label>
         <input
+          className="project-desc-input"
           type="text"
           name="projectDesc"
           id="projectDesc"
@@ -59,8 +66,11 @@ export const EditProject = () => {
           }}
         />
 
-        <label htmlFor="createdBy">Created By</label>
+        <label className="created-by" htmlFor="createdBy">
+          Created By
+        </label>
         <input
+          className="created-by-input"
           type="text"
           name="createdBy"
           id="createdBy"
@@ -70,8 +80,11 @@ export const EditProject = () => {
           }}
         />
 
-        <label htmlFor="genre">Genre</label>
+        <label className="genre" htmlFor="genre">
+          Genre
+        </label>
         <input
+          className="genre-input"
           type="text"
           name="genre"
           id="genre"
@@ -80,7 +93,9 @@ export const EditProject = () => {
             setGenre(e.target.value);
           }}
         />
-        <button type="submit">Update Project</button>
+        <button className="submit-button" type="submit">
+          Update Project
+        </button>
       </form>
     </>
   );

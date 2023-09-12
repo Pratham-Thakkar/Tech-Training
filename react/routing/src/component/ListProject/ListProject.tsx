@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./ListProject.css";
 
 type details = Record<string, string>;
 export const ListProject = () => {
@@ -36,8 +37,9 @@ export const ListProject = () => {
   }
 
   return (
-    <>
+    <div className="project-list">
       <input
+        className="search-bar"
         type="text"
         placeholder="Enter a text to be searched"
         onChange={(e) => {
@@ -48,6 +50,7 @@ export const ListProject = () => {
 
       <label htmlFor="sort">Sort by:</label>
       <select
+        className="sort-value"
         value={selectedValue}
         onChange={(e) => {
           handleChange();
@@ -61,6 +64,7 @@ export const ListProject = () => {
 
       <label htmlFor="filter">Filter by:</label>
       <select
+        className="filter"
         value={filterBy}
         onChange={(e) => {
           handleChange();
@@ -115,6 +119,6 @@ export const ListProject = () => {
       >
         Load More
       </button>
-    </>
+    </div>
   );
 };

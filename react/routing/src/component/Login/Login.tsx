@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import "./Login.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,11 +13,14 @@ export const Login = () => {
       email,
       password,
     });
-    auth?.setToken(res.data);
+    if (res.data) {
+      auth?.setToken(res.data);
+      alert("Login Sucessful");
+    }
   }
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="Email">Email:</label>
         <input
           type="text"

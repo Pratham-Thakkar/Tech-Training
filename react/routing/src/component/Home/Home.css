@@ -1,0 +1,51 @@
+.navbar {
+    background-color: bisque; 
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .nav-logo {
+    height: 4.5rem;
+    margin-top: 0.5%;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    font-size: large;
+    margin: 2%;
+  }
+  
+  .nav-item {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .nav-item:last-child {
+    margin-right: 0; 
+  }
+  
+  a {
+    text-decoration: none;
+    color:black
+  }
+  
+  a:hover {
+    text-decoration: underline; 
+  }
+  
+  li > button {
+    background-color: #007bff; 
+    color: whitesmoke; 
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: large;
+    border-radius: 0.5rem;
+  }
+  
+  li >button:hover {
+    background-color: #0056b3; 
+  }

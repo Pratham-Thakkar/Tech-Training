@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { FormEvent, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import "../CreateTalent/CreateTalent.css";
 
 export const EditTalnet = () => {
   const location = useLocation();
@@ -39,8 +40,11 @@ export const EditTalnet = () => {
   return (
     <>
       <form className="talent-form" onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="firstName">First Name:</label>
+        <label className="first-name" htmlFor="firstName">
+          First Name:
+        </label>
         <input
+          className="first-name-input"
           type="text"
           name="firstName"
           id="firstName"
@@ -49,8 +53,11 @@ export const EditTalnet = () => {
             setFirstName(e.target.value);
           }}
         />
-        <label htmlFor="lastName">Last Name:</label>
+        <label className="last-name" htmlFor="lastName">
+          Last Name:
+        </label>
         <input
+          className="last-name-input"
           type="text"
           name="lastName"
           id="lastName"
@@ -59,8 +66,11 @@ export const EditTalnet = () => {
             setLastName(e.target.value);
           }}
         />
-        <label htmlFor="email">Email:</label>
+        <label className="email" htmlFor="email">
+          Email:
+        </label>
         <input
+          className="email-input"
           type="email"
           name="email"
           id="email"
@@ -69,8 +79,11 @@ export const EditTalnet = () => {
             setEmail(e.target.value);
           }}
         />
-        <label htmlFor="Gender">gender:</label>
+        <label className="gender" htmlFor="Gender">
+          Gender:
+        </label>
         <input
+          className="gender-input"
           type="radio"
           name="gender"
           value="male"
@@ -81,6 +94,7 @@ export const EditTalnet = () => {
         />
         Male
         <input
+          className="gender-input"
           type="radio"
           name="gender"
           value="female"
@@ -90,7 +104,9 @@ export const EditTalnet = () => {
           }}
         />
         Female
-        <button type="submit">Update Talent</button>
+        <button className="submit-button" type="submit">
+          Update Talent
+        </button>
       </form>
     </>
   );
