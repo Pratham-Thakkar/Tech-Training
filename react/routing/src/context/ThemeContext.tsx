@@ -11,7 +11,7 @@ export const ThemeProvider = ({ children }: any) => {
     React.Dispatch<React.SetStateAction<boolean>>
   ] = useState<boolean>(false);
 
-  const color = isDark ? "#fff" : "#333";
+  const color = isDark ? "#e75480 " : "#333";
   const backgroundColor = isDark ? "#333" : "#fff";
 
   document.body.style.color = color;
