@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const CharacterCounter = () => {
   const [content, setContent] = useState("");
-  const [charactersLength, setCharactersLength] = useState(0);
-  const [wordsLength, setWordsLength] = useState(0);
-
-  useEffect(() => {
-    setCharactersLength(content.length);
-    setWordsLength(content.split(" ").length - 1);
-  }, [content]);
 
   return (
     <>
@@ -20,7 +13,13 @@ export const CharacterCounter = () => {
       />
 
       <h3>
-        You have entered {charactersLength} letters and {wordsLength} words.
+        You have entered {content.length} letters and{" "}
+        {
+          content.split(" ").filter((words) => {
+            return words.trim() != "";
+          }).length
+        }{" "}
+        words.
       </h3>
     </>
   );

@@ -47,7 +47,7 @@ export const ResetPassword = () => {
     <>
       <FormGroup className="position-relative">
         <Label for="New Password">New Password</Label>
-        {isPasswordVerified && errorList ? (
+        {isPasswordVerified && errorList.length === 0 ? (
           <Input
             valid
             value={newPassword}
@@ -56,12 +56,11 @@ export const ResetPassword = () => {
         ) : (
           <Input
             invalid
-            valid
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
         )}
-        {isPasswordVerified && errorList ? (
+        {isPasswordVerified && errorList.length === 0 ? (
           <FormFeedback tooltip valid>
             Sweet! Your password seems to be strong
           </FormFeedback>
@@ -73,7 +72,9 @@ export const ResetPassword = () => {
             return <li key={index}>{err}</li>;
           })}
         </FormText>
-        {isPasswordVerified && errorList && <Button>Submit</Button>}
+        {isPasswordVerified && errorList.length === 0 && (
+          <Button>Submit</Button>
+        )}
       </FormGroup>
     </>
   );
