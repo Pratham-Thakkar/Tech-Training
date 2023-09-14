@@ -2,9 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ListProject.css";
+import { useTheme } from "../../context/ThemeContext";
 
 type details = Record<string, string>;
+
 export const ListProject = () => {
+  const theme = useTheme();
   const [projects, setProjects] = useState(Array<details>);
   const [limit, setLimit] = useState(5);
   const [offset, setOffset] = useState(0);
