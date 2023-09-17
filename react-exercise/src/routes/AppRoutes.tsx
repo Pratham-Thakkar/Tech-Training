@@ -3,6 +3,9 @@ import { CharacterCounter } from "../components/CharacterCounter/CharacterCounte
 import { Home } from "../components/Home/Home";
 import { ResetPassword } from "../components/ResetPassword/ResetPassword";
 import { ListProducts } from "../components/ListProducts/ListProducts";
+import { SignUp } from "../components/Sign Up/SignUp";
+import { Login } from "../components/Sign In/Login";
+import { ProtectedRoutes } from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -11,15 +14,35 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/character-counter",
-        element: <CharacterCounter />,
+        element: (
+          <ProtectedRoutes>
+            <CharacterCounter />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/reset-password",
-        element: <ResetPassword />,
+        element: (
+          <ProtectedRoutes>
+            <ResetPassword />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/list-products",
-        element: <ListProducts />,
+        element: (
+          <ProtectedRoutes>
+            <ListProducts />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

@@ -9,8 +9,17 @@ import {
   Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { NavBar } from "../NavBar/NavBar";
+import { useAuth } from "../context/AuthContext";
+import jwtDecode from "jwt-decode";
+
+interface JwtPayload {
+  payLoad: Record<string, string>;
+}
 
 export const ListProducts = () => {
+  const auth = useAuth();
+  const data: JwtPayload = jwtDecode(auth?.token!);
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
 
   const fetchProductDetails = useCallback(async () => {
@@ -23,6 +32,9 @@ export const ListProducts = () => {
   }, [fetchProductDetails]);
   return (
     <>
+      <NavBar>
+        <button>Welcome, {data?.payLoad!.name}</button>
+      </NavBar>
       {products.map((product) => {
         return (
           <>

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { NavBar } from "../NavBar/NavBar";
 
 export const CharacterCounter = () => {
   const [content, setContent] = useState("");
 
   return (
     <>
+      <NavBar />
       <textarea
         value={content}
         rows={5}
@@ -16,7 +18,7 @@ export const CharacterCounter = () => {
         You have entered {content.length} letters and{" "}
         {
           content.split(" ").filter((words) => {
-            return words.trim() != "";
+            return words.trim() !== "";
           }).length
         }{" "}
         words.

@@ -8,6 +8,7 @@ import {
   FormText,
   Button,
 } from "reactstrap";
+import { NavBar } from "../NavBar/NavBar";
 
 export const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -45,6 +46,7 @@ export const ResetPassword = () => {
   }, [newPassword]);
   return (
     <>
+      <NavBar />
       <FormGroup className="position-relative">
         <Label for="New Password">New Password</Label>
         {isPasswordVerified && errorList.length === 0 ? (
