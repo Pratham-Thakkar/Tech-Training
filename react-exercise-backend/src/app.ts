@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import userRoutes from "./routes/user";
+import categoriesRoutes from "./routes/categories";
+import blogsRoutes from "./routes/blogs";
 import bodyParser from "body-parser";
 import "dotenv/config";
 
@@ -19,6 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(userRoutes);
+app.use(categoriesRoutes);
+app.use(blogsRoutes);
 
 app.listen(parseInt(process.env.PORT_NO!), "", () => {
   console.log("server is listening on port", parseInt(process.env.PORT_NO!));

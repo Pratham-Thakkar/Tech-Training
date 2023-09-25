@@ -33,6 +33,7 @@ export const login = async (req: Request, res: Response) => {
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
         payLoad: {
           name: `${user.rows[0].first_name} ${user.rows[0].last_name}`,
+          userId: user.rows[0].user_id,
           email: user.rows[0].email,
         },
       },

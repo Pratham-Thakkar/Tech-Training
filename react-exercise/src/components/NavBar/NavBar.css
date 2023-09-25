@@ -32,3 +32,12 @@ li:hover{
     justify-content: space-between;
     padding: 0.5%;
 }
+
+ul>button{
+    margin: 0.3%;
+}
+
+ul>h6{
+    margin-top: 2%;
+   text-align: center;
+}

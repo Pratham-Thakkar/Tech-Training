@@ -34,7 +34,7 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    if (isLogin) navigate("/list-products");
+    if (isLogin) navigate("/list-blog");
   }, [isLogin, navigate]);
   return (
     <>

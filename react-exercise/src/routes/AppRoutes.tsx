@@ -6,12 +6,47 @@ import { ListProducts } from "../components/ListProducts/ListProducts";
 import { SignUp } from "../components/Sign Up/SignUp";
 import { Login } from "../components/Sign In/Login";
 import { ProtectedRoutes } from "./ProtectedRoute";
+import { CreateBlog } from "../components/Blog/CreateBlog/CreateBlog";
+import { ListBlog } from "../components/Blog/ListBlog/ListBlog";
+import { ListSpecificBlog } from "../components/Blog/ListSpecificBlog/ListSpecificBlog";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     children: [
+      {
+        path: "/",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/create-blog",
+        element: (
+          <ProtectedRoutes>
+            <CreateBlog />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/list-blog",
+        element: (
+          <ProtectedRoutes>
+            <ListBlog />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/blog/:createBy/:id",
+        element: (
+          <ProtectedRoutes>
+            <ListSpecificBlog />
+          </ProtectedRoutes>
+        ),
+      },
       {
         path: "/character-counter",
         element: (
@@ -35,14 +70,6 @@ export const router = createBrowserRouter([
             <ListProducts />
           </ProtectedRoutes>
         ),
-      },
-      {
-        path: "/",
-        element: <SignUp />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
       },
     ],
   },
