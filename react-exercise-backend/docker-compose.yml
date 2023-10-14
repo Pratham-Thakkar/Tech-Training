@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: blog_frontend_container
+    restart: always
+    build: ./frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+
+  server:
+    container_name: blog_backend_container
+    restart: always
+    build: ./backend
+    ports:
+      - 3001:3000
+    environment:
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+    env_file:
+      - ./backend/.env
+  
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/backup.sql
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "0809@Pratham"
+      POSTGRES_DB: "react-exercise"
+
+
+
+

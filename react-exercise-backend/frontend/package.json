@@ -1,0 +1,68 @@
+{
+  "name": "react-exercise",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/jest": "^27.5.2",
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/node": "^16.18.50",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "axios": "^1.5.0",
+    "bootstrap": "^5.3.1",
+    "buffer": "^6.0.3",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
+    "formik": "^2.4.4",
+    "html-react-parser": "^4.2.2",
+    "https-browserify": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^3.1.2",
+    "node-emoji": "^2.1.0",
+    "os-browserify": "^0.3.0",
+    "quill": "^1.3.7",
+    "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
+    "react-router": "^6.15.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "reactstrap": "^9.2.0",
+    "stream": "^0.0.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "typescript": "^4.9.5",
+    "util": "^0.12.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@types/uuid": "^9.0.3"
+  }
+}
